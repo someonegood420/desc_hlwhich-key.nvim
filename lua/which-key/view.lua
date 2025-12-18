@@ -183,7 +183,7 @@ function M.item(node, opts)
   end
   desc = M.replace("desc", desc or "")
   local icon, icon_hl = M.icon(node)
-
+  local desc_hl = node.mapping and node.mapping.desc_hl -- Pull from mapping spec if present
   local raw_key = node.key
   if opts.parent and opts.parent ~= node and node.keys:find(opts.parent.keys, 1, true) == 1 then
     raw_key = node.keys:sub(opts.parent.keys:len() + 1)
@@ -199,6 +199,7 @@ function M.item(node, opts)
     raw_key = raw_key,
     desc = group and Config.icons.group .. desc or desc,
     group = group,
+    desc_hl = desc_hl, -- Store for rendering
   }, { __index = node })
 end
 
@@ -362,7 +363,7 @@ function M.show()
         for c, col in ipairs(row) do
           local hl = col.hl
           if cols[c].key == "desc" then
-            hl = item.group and "WhichKeyGroup" or "WhichKeyDesc"
+            hl = item.desc_hl or (item.group and "WhichKeyGroup" or "WhichKeyDesc") -- Use custom if available
           end
           if cols[c].key == "icon" then
             hl = item.icon_hl

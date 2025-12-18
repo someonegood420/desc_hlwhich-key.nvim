@@ -26,6 +26,7 @@ M.fields = {
   buffer = { inherit = true },
   callback = { transform = "rhs" },
   desc = {},
+  desc_hl = { inherit = true }, -- Allow custom desc_hl field
   expr = { inherit = true },
   mode = { inherit = true },
   noremap = {

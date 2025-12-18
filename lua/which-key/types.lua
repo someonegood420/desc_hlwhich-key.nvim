@@ -67,6 +67,7 @@
 ---@field lhs? string
 ---@field group? string|fun():string
 ---@field desc? string|fun():string
+---@field desc_hl? string
 ---@field icon? wk.Icon|string|fun():(wk.Icon|string)
 ---@field buffer? number|boolean
 ---@field mode? string|string[]
